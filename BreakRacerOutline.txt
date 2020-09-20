@@ -1,0 +1,41 @@
+Break Racer
+
+Break Racer is a game where the user controls a 'racecar' made of weighted pixels.
+These weighted pixels are squares with assigned weight or 'integrity' to them that
+influences the force they apply when colliding with other pixels. Additionaly, there is a
+Connective Force that keeps pixels together.
+
+    -If a pixel has a high connective force, it will take more force to break it from its neighbor.
+    -This breaking process is checked regularly only when the pixel is being moved. if the
+      pixel collides with another pixel, a force will be calculated and applied to both pixels
+      which will transfer onto all connected pixels with an energy loss across each transfer.
+        -Force = Integrity*Acceleration
+        -Acceleration = Velocity/Time
+
+    -Pixels will also have a Friction value that determines how much Force is applied when two
+      pixels have a parallel interaction.
+        -0000 [0 : empty]
+        -0+00 [+ : pixel]
+        -0+<0 [</> : direction of pixel movement]
+        -0000
+        -The bottom pixel is 'touching' the top pixel, but only has movement to the left.
+          Therefore it will only apply a force on the upper pixel multiplied by both of their
+          friction values combined.
+
+When does a pixel break?
+
+    -A pixel breaks when the applied force on it is greater than the connective force that exists
+      between it and its neighbors, regardless of direction. This is for simplicity of calculation.
+      Therefore, even if the force is in the same direction as the connective force between its
+      neighbor, it will still break if the force is too great.
+
+What happens when a pixel breaks?
+    
+    -When a pixel breaks, its connective force is subtracted from the applied force on it and the
+      pixel has the new force applied to it. This allows for some unique situations to occur.
+          -Consider this: A single pixel on the edge of a car is hit with a large applied force
+            which exceeds that of its FIRST checked connective force (should be random or
+            directional checks). It's first connective force will break, and then its new applied
+            force is calculated, but is not enough to break the next connective force. Therefore,
+            it is left with its remaining connections. This allows the pixel to be 'hanging by a
+            thread.'

@@ -1,0 +1,33 @@
+Pixel:
+
+  *Color        color         get/set
+  *Structure    structure     get/set
+  *var          integrity     get
+  *var          friction      get
+  -var          appliedForce  get/set
+  -Connection{} connection    get/set   //dictionary with up, down, left, right
+  
+  applyForce(var forceMagnitude):
+    - sets appliedForce to forceMagnitude plus appliedForce
+    - checks to see if the applied force on the pixel will break its connections
+    - this does NOT influence the parent structure's velocity, and is purely for calculating
+      breaking force.
+    - this is called by structure.applyForce()
+    
+  breakConnection(var direction):
+    - called by applyForce when it needs to break a connection between this and another pixel
+    - calls applyForce with the new depricatedForce
+    - If no breaks, sets appliedForce to zero
+
+  depricatedForce(var forceMagnitude, integrity, brokenIntegrity):
+    - calculates the new appliedForce based off of the previous forceMagnitude, the given Integrity, and the broken Integrity
+    - returns the new appliedForce
+
+  Connection:
+    
+    *var    connectForce  get/set
+    *Pixel  neighbor      get
+    
+    break():
+      - breaks the connection to the other Pixel
+      - passes the connective force/2 to the neighbor.

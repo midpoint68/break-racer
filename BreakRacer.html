@@ -1,0 +1,33 @@
+<!--Break Racer is created and developed by Trevor Richard-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Break Racer</title>
+    <link rel="icon" type="image/ico" href="res/BreakRacer.ico">
+    <style>body {padding: 0; margin: 0;} canvas {vertical-align:top;} </style>
+  </head>
+  <body onkeypress="keyPressed(event)" onkeydown="keyDown(event)">
+    
+    <form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post" style="display:none">
+      <fieldset>
+        <h1>Select a track file to load...</h1>
+         <input type='file' name="fileIN" id='fileinput'>
+         <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+         <input type='button' value='cancel' onclick='jsonInput.style.display = "none";game.track.notLoading = true;'>
+      </fieldset>
+    </form>
+    
+    <canvas id='gameWindow' onmousedown="mousePressed(event)" onmouseup="mouseReleased(event)" onmousemove="mouseMoved(event)">Loading Break Racer...</canvas>
+    <!--script src="BreakMin.js"></script-->
+    <script src='obj/Pixel.js'></script>
+    <script src='obj/Structure.js'></script>
+    <script src='obj/Game.js'></script>
+    <script src='obj/GameMap.js'></script>
+    <script src='obj/TrackMaker.js'></script>
+    <script src='obj/Garage.js'></script>
+    <script src='obj/Play.js'></script>
+    <script src='obj/MainMenu.js'></script>
+    <script src='obj/Backbone.js'></script>
+  </body>
+</html>

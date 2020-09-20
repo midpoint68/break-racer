@@ -1,0 +1,18 @@
+Structure:
+
+  *var        width         get
+  *var        height        get
+  -var        sumIntegrity  get
+  -var        appliedForce  get/set
+  -var        angle         get/set
+  -Vec        velocity      get/set
+  -Vec        accel         get/set
+  -Pixel[][]  pixelMap      get/set
+
+  setPixel(var x, var y, Pixel pixel):
+    - sets pixel to the specified coordinates
+
+  getPixel(var x, var y):
+    - returns the pixel at the specified coordinates
+
+  
